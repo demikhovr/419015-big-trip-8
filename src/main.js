@@ -13,7 +13,7 @@ const tripFiltersWrapper = document.querySelector(`.trip-filter`);
 const tripPointsWrapper = document.querySelector(`.trip-day__items`);
 
 tripFiltersWrapper.addEventListener(`change`, () => {
-  const pointsLength = getRandomNumber(MIN_TRIP_POINTS, MAX_TRIP_POINTS);
+  const pointsLength = getRandomNumber(MAX_TRIP_POINTS, MIN_TRIP_POINTS);
   const tripPointsData = tripPointsDataMock.slice(0, pointsLength);
   render(tripPointsData, makeTripPoint, tripPointsWrapper, true);
 });
