@@ -14,3 +14,9 @@ export const getRandomArrayItems = (array, max, min = 0) => {
 
   return [...randomItems];
 };
+
+export const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template.trim();
+  return newElement.firstChild;
+};
