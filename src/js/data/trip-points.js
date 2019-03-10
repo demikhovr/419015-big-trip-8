@@ -12,44 +12,54 @@ const MILLISECONDS = 1000;
 
 export const TripPointTypes = {
   taxi: {
-    title: `Taxi to`,
+    label: `Taxi to`,
     icon: `🚕`,
+    group: `transport`,
   },
   bus: {
-    title: `Bus to`,
+    label: `Bus to`,
     icon: `🚌`,
+    group: `transport`,
   },
   train: {
-    title: `Train to`,
+    label: `Train to`,
     icon: `🚂`,
+    group: `transport`,
   },
   ship: {
-    title: `Ship to`,
+    label: `Ship to`,
     icon: `🛳`,
+    group: `transport`,
   },
   transport: {
-    title: `Transport to`,
+    label: `Transport to`,
     icon: `🚊`,
+    group: `transport`,
   },
   drive: {
-    title: `Drive to`,
+    label: `Drive to`,
     icon: `🚗`,
+    group: `transport`,
   },
   flight: {
-    title: `Flight to`,
+    label: `Flight to`,
     icon: `✈`,
+    group: `transport`,
   },
   checkIn: {
-    title: `Check-in into`,
+    label: `Check-in into`,
     icon: `🏨`,
+    group: `place`,
   },
   sightseeing: {
-    title: `Sightseeing`,
+    label: `Sightseeing`,
     icon: `🏛`,
+    group: `place`,
   },
   restaurant: {
-    title: `Restaurant in`,
+    label: `Visit the restaurant in`,
     icon: `🍴`,
+    group: `place`,
   },
 };
 
@@ -78,7 +88,7 @@ const price = {
   MAX: 200,
 };
 
-const destinations = [
+export const destinations = [
   `Amsterdam`,
   `New York`,
   `Paris`,
@@ -93,22 +103,18 @@ const destinations = [
 const offers = [
   {
     content: `Add luggage`,
-    currency: `+&euro;`,
     price: 20,
   },
   {
     content: `Switch to comfort class`,
-    currency: `+&dollar;`,
     price: 30,
   },
   {
     content: `Add meal`,
-    currency: `+&euro;`,
     price: 40,
   },
   {
     content: `Choose seats`,
-    currency: `+&dollar;`,
     price: 50,
   },
 ];
@@ -136,14 +142,15 @@ const getOffers = () => getRandomArrayItems(offers, offersAmount.MAX, offersAmou
 const getTripPoint = () => ({
   type: getType(),
   destination: destinations[getRandomNumber(destinations.length - 1)],
-  photos: getPhotoUrls(),
+  images: getPhotoUrls(),
   offers: getOffers(),
   description: getDescriptions(),
   schedule: {
     start: Date.now(),
     end: Date.now() + HOURS * getRandomNumber(MINUTES) * SECONDS * MILLISECONDS,
   },
-  price: `&euro;&nbsp;${getRandomNumber(price.MAX, price.MIN)}`,
+  price: getRandomNumber(price.MAX, price.MIN),
+  isFavorite: Boolean(getRandomNumber()),
 });
 
 export default new Array(MAX_TRIP_POINTS)
