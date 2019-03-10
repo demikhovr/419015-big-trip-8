@@ -11,52 +11,52 @@ const SECONDS = 60;
 const MILLISECONDS = 1000;
 
 export const TripPointTypes = {
-  taxi: {
+  'taxi': {
     label: `Taxi to`,
     icon: `🚕`,
     group: `transport`,
   },
-  bus: {
+  'bus': {
     label: `Bus to`,
     icon: `🚌`,
     group: `transport`,
   },
-  train: {
+  'train': {
     label: `Train to`,
     icon: `🚂`,
     group: `transport`,
   },
-  ship: {
+  'ship': {
     label: `Ship to`,
     icon: `🛳`,
     group: `transport`,
   },
-  transport: {
+  'transport': {
     label: `Transport to`,
     icon: `🚊`,
     group: `transport`,
   },
-  drive: {
+  'drive': {
     label: `Drive to`,
     icon: `🚗`,
     group: `transport`,
   },
-  flight: {
+  'flight': {
     label: `Flight to`,
     icon: `✈`,
     group: `transport`,
   },
-  checkIn: {
+  'check-in': {
     label: `Check-in into`,
     icon: `🏨`,
     group: `place`,
   },
-  sightseeing: {
+  'sightseeing': {
     label: `Sightseeing`,
     icon: `🏛`,
     group: `place`,
   },
-  restaurant: {
+  'restaurant': {
     label: `Visit the restaurant in`,
     icon: `🍴`,
     group: `place`,
