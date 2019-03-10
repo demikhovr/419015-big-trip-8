@@ -11,13 +11,34 @@ import Filter from './components/filter/filter';
 const tripFiltersWrapper = document.querySelector(`.trip-filter`);
 const tripPointsWrapper = document.querySelector(`.trip-day__items`);
 
+const initTripPoint = (data) => {
+  const tripPoint = new TripPoint(data);
+  const tripPointEdit = new TripPointEdit(data);
+  tripPointsWrapper.appendChild(tripPoint.render());
+
+  tripPoint.onClick = () => {
+    tripPointEdit.render();
+    tripPointsWrapper.replaceChild(tripPointEdit.element, tripPoint.element);
+    tripPoint.destroy();
+  };
+
+  tripPointEdit.onSubmit = () => {
+    tripPoint.render();
+    tripPointsWrapper.replaceChild(tripPoint.element, tripPointEdit.element);
+    tripPointEdit.destroy();
+  };
+
+  tripPointEdit.onReset = () => {
+    tripPoint.render();
+    tripPointsWrapper.replaceChild(tripPoint.element, tripPointEdit.element);
+    tripPointEdit.destroy();
+  };
+};
+
 tripFiltersWrapper.addEventListener(`change`, () => {
   const data = tripPointsData.slice(0, getRandomNumber(MAX_TRIP_POINTS, MIN_TRIP_POINTS));
   tripPointsWrapper.innerHTML = ``;
-  data.forEach((point) => {
-    const tripPoint = new TripPoint(point);
-    tripPointsWrapper.appendChild(tripPoint.render());
-  });
+  data.forEach(initTripPoint);
 });
 
 filtersData.forEach((it) => {
@@ -25,26 +46,4 @@ filtersData.forEach((it) => {
   tripFiltersWrapper.appendChild(filter.render());
 });
 
-tripPointsData.forEach((point) => {
-  const tripPoint = new TripPoint(point);
-  const tripPointEdit = new TripPointEdit(point);
-  tripPointsWrapper.appendChild(tripPoint.render());
-
-  tripPoint.onClick = () => {
-    tripPointEdit.render();
-    tripPointsWrapper.replaceChild(tripPointEdit.element, tripPoint.element);
-    tripPoint.unrender();
-  };
-
-  tripPointEdit.onSubmit = () => {
-    tripPoint.render();
-    tripPointsWrapper.replaceChild(tripPoint.element, tripPointEdit.element);
-    tripPointEdit.unrender();
-  };
-
-  tripPointEdit.onReset = () => {
-    tripPoint.render();
-    tripPointsWrapper.replaceChild(tripPoint.element, tripPointEdit.element);
-    tripPointEdit.unrender();
-  };
-});
+tripPointsData.forEach(initTripPoint);

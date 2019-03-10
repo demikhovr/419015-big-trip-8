@@ -1,10 +1,10 @@
-import {createElement} from '../../utils/util';
+import Component from '../component';
 import makeTemplate from './template';
 
-export default class TripPoint {
+export default class TripPoint extends Component {
   constructor(data) {
+    super();
     this.data = data;
-    this._element = null;
     this._onSubmit = null;
     this._onReset = null;
     this._onFormSubmit = this._onFormSubmit.bind(this);
@@ -19,18 +19,8 @@ export default class TripPoint {
     this._onReset = fn;
   }
 
-  get element() {
-    return this._element;
-  }
-
   get template() {
     return makeTemplate(this.data);
-  }
-
-  render() {
-    this._element = createElement(this.template);
-    this.createListeners();
-    return this._element;
   }
 
   createListeners() {
@@ -42,12 +32,6 @@ export default class TripPoint {
   removeListeners() {
     this._form.removeEventListener(`submit`, this._onFormSubmit);
     this._form.removeEventListener(`reset`, this._onFormReset);
-  }
-
-  unrender() {
-    this.removeListeners();
-    this._element.remove();
-    this._element = null;
   }
 
   _onFormSubmit(evt) {
