@@ -4,7 +4,15 @@ import makeTemplate from './template';
 export default class TripPoint extends Component {
   constructor(data) {
     super();
-    this.data = data;
+    this._type = data.type;
+    this._destination = data.destination;
+    this._offers = data.offers;
+    this._price = data.price;
+    this._schedule = data.schedule;
+    this._images = data.images;
+    this._description = data.description;
+    this._isFavorite = data.isFavorite;
+
     this._onSubmit = null;
     this._onReset = null;
     this._onFormSubmit = this._onFormSubmit.bind(this);
@@ -20,7 +28,16 @@ export default class TripPoint extends Component {
   }
 
   get template() {
-    return makeTemplate(this.data);
+    return makeTemplate(
+        this._type,
+        this._destination,
+        this._offers,
+        this._price,
+        this._schedule,
+        this._images,
+        this._description,
+        this._isFavorite
+    );
   }
 
   createListeners() {

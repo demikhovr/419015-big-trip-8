@@ -3,13 +3,13 @@ import {
   scheduleLocaleOptions,
 } from '../../data/trip-points';
 
-export default ({
-  type,
-  destination,
-  offers,
-  price,
-  schedule,
-}) => {
+export default (
+    type,
+    destination,
+    offers,
+    price,
+    schedule
+) => {
   const startTime = new Date(schedule.start).toLocaleString(...scheduleLocaleOptions);
   const endTime = new Date(schedule.end).toLocaleString(...scheduleLocaleOptions);
   const diff = schedule.end - schedule.start;

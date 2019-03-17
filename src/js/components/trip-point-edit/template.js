@@ -60,16 +60,16 @@ const getImages = (images) => images.map((img) => `<img
   alt="picture from place"
   class="point__destination-image">`).join(``);
 
-export default ({
-  type,
-  destination,
-  offers,
-  price,
-  schedule,
-  images,
-  description,
-  isFavorite = false,
-}) => {
+export default (
+    type,
+    destination,
+    offers,
+    price,
+    schedule,
+    images,
+    description,
+    isFavorite = false
+) => {
   const startTime = new Date(schedule.start).toLocaleString(...scheduleLocaleOptions);
   const endTime = new Date(schedule.end).toLocaleString(...scheduleLocaleOptions);
   const offersPrice = offers.reduce((acc, curr) => acc + curr.price, 0);
