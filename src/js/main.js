@@ -4,34 +4,35 @@ import tripPointsData, {
 } from './data/trip-points';
 import filtersData from './data/filters';
 import {getRandomNumber} from './utils/util';
-import TripPoint from './components/trip-point/trip-point';
-import TripPointEdit from './components/trip-point-edit/trip-point-edit';
+import TripPointComponent from './components/trip-point/trip-point';
+import TripPointEditComponent from './components/trip-point-edit/trip-point-edit';
 import Filter from './components/filter/filter';
 
 const tripFiltersWrapper = document.querySelector(`.trip-filter`);
 const tripPointsWrapper = document.querySelector(`.trip-day__items`);
 
 const initTripPoint = (data) => {
-  const tripPoint = new TripPoint(data);
-  const tripPointEdit = new TripPointEdit(data);
-  tripPointsWrapper.appendChild(tripPoint.render());
+  const tripPointComponent = new TripPointComponent(data);
+  const tripPointEditComponent = new TripPointEditComponent(data);
+  tripPointsWrapper.appendChild(tripPointComponent.render());
 
-  tripPoint.onClick = () => {
-    tripPointEdit.render();
-    tripPointsWrapper.replaceChild(tripPointEdit.element, tripPoint.element);
-    tripPoint.destroy();
+  tripPointComponent.onClick = () => {
+    tripPointEditComponent.render();
+    tripPointsWrapper.replaceChild(tripPointEditComponent.element, tripPointComponent.element);
+    tripPointComponent.destroy();
   };
 
-  tripPointEdit.onSubmit = () => {
-    tripPoint.render();
-    tripPointsWrapper.replaceChild(tripPoint.element, tripPointEdit.element);
-    tripPointEdit.destroy();
+  tripPointEditComponent.onSubmit = (newTripPoint) => {
+    tripPointComponent.update(newTripPoint);
+    tripPointComponent.render();
+    tripPointsWrapper.replaceChild(tripPointComponent.element, tripPointEditComponent.element);
+    tripPointEditComponent.destroy();
   };
 
-  tripPointEdit.onReset = () => {
-    tripPoint.render();
-    tripPointsWrapper.replaceChild(tripPoint.element, tripPointEdit.element);
-    tripPointEdit.destroy();
+  tripPointEditComponent.onReset = () => {
+    tripPointComponent.render();
+    tripPointsWrapper.replaceChild(tripPointComponent.element, tripPointEditComponent.element);
+    tripPointEditComponent.destroy();
   };
 };
 

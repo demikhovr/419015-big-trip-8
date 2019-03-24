@@ -102,20 +102,28 @@ export const destinations = [
 
 const offers = [
   {
-    content: `Add luggage`,
+    id: 1,
+    content: `add-luggage`,
     price: 20,
+    checked: true,
   },
   {
-    content: `Switch to comfort class`,
+    id: 2,
+    content: `switch-to-comfort-class`,
     price: 30,
+    checked: true,
   },
   {
-    content: `Add meal`,
+    id: 3,
+    content: `add-meal`,
     price: 40,
+    checked: true,
   },
   {
-    content: `Choose seats`,
+    id: 4,
+    content: `choose-seats`,
     price: 50,
+    checked: true,
   },
 ];
 
@@ -139,7 +147,9 @@ const getPhotoUrls = () => new Array(photoParams.MAX).fill(null).map(getPhotoUrl
 const getDescriptions = () => getRandomArrayItems(descriptions, descriptionsAmount.MAX, descriptionsAmount.MIN).join(``);
 const getOffers = () => getRandomArrayItems(offers, offersAmount.MAX, offersAmount.MIN);
 
-const getTripPoint = () => ({
+const getTripPoint = (item, id) => ({
+  id,
+  day: `1 March`,
   type: getType(),
   destination: destinations[getRandomNumber(destinations.length - 1)],
   images: getPhotoUrls(),

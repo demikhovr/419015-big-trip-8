@@ -1,4 +1,4 @@
-export default ({name, checked = false}) => {
+export default (name, checked = false) => {
   const filterName = name.toLowerCase();
   const caption = filterName[0].toUpperCase() + filterName.slice(1).toLowerCase();
   const checkedState = checked ? `checked` : ``;
