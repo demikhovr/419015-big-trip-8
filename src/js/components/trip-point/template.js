@@ -3,7 +3,19 @@ import {
   scheduleLocaleOptions,
 } from '../../data/trip-points';
 
+const getOffers = (offers) => offers.map((offer) => {
+  const content = offer.content.split(`-`).join(` `);
+
+  return `<li>
+    <button class="trip-point__offer">
+      ${content[0].toUpperCase() + content.slice(1).toLowerCase()} €${offer.price}
+    </button>
+  </li>`;
+}).join(``);
+
 export default (
+    id,
+    day,
     type,
     destination,
     offers,
@@ -25,9 +37,7 @@ export default (
     </p>
     <p class="trip-point__price">€&nbsp;${price}</p>
     <ul class="trip-point__offers">
-      ${offers.map((offer) => `<li>
-        <button class="trip-point__offer">${offer.content} €${offer.price}</button>
-      </li>`).join(``)}
+      ${getOffers(offers)}
     </ul>
   </article>`;
 };

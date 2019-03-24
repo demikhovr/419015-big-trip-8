@@ -27,6 +27,8 @@ export default class Component {
 
   removeListeners() {}
 
+  update() {}
+
   destroy() {
     this.removeListeners();
     this._element.remove();

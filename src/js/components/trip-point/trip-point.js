@@ -4,6 +4,8 @@ import makeTemplate from './template';
 export default class TripPoint extends Component {
   constructor(data) {
     super();
+    this._id = data.id;
+    this._day = data.day;
     this._type = data.type;
     this._destination = data.destination;
     this._offers = data.offers;
@@ -20,6 +22,8 @@ export default class TripPoint extends Component {
 
   get template() {
     return makeTemplate(
+        this._id,
+        this._day,
         this._type,
         this._destination,
         this._offers,
@@ -34,6 +38,16 @@ export default class TripPoint extends Component {
 
   removeListeners() {
     this._element.removeEventListener(`click`, this._onTripPointClick);
+  }
+
+  update(data) {
+    this._id = data.id;
+    this._day = data.day;
+    this._type = data.type;
+    this._destination = data.destination;
+    this._offers = data.offers;
+    this._price = data.price;
+    this._schedule = data.schedule;
   }
 
   _onTripPointClick() {
